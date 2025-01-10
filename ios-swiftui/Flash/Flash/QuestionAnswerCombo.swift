@@ -27,8 +27,8 @@ class QuestionAnswerCombo: Codable {
         optionC: String,
         optionD: String,
         correctOption: String,
-        dateAdded: Date,
-        dateAnswered: Date,
+        dateAdded: Date = Date.now,
+        dateAnswered: Date = Date.distantPast,
         summary: String,
         difficultyRating: Int,
         status: Status
