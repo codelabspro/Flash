@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import SwiftData
 
-class QuestionAnswerCombo: Codable {
+@Model
+class QuestionAnswerCombo {
     var question: String
     var optionA: String
     var optionB: String
