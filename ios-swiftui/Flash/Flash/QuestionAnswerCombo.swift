@@ -20,7 +20,19 @@ class QuestionAnswerCombo: Codable {
     var difficultyRating: Int?
     var status: Status
     
-    init(question: String, optionA: String, optionB: String, optionC: String, optionD: String, correctOption: String, dateAdded: Date, dateAnswered: Date, summary: String, difficultyRating: Int, status: Status) {
+    init(
+        question: String,
+        optionA: String,
+        optionB: String,
+        optionC: String,
+        optionD: String,
+        correctOption: String,
+        dateAdded: Date,
+        dateAnswered: Date,
+        summary: String,
+        difficultyRating: Int,
+        status: Status
+    ) {
         self.question = question
         self.optionA = optionA
         self.optionB = optionB
