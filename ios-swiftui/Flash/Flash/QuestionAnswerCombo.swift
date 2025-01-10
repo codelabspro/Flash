@@ -29,9 +29,9 @@ class QuestionAnswerCombo: Codable {
         correctOption: String,
         dateAdded: Date = Date.now,
         dateAnswered: Date = Date.distantPast,
-        summary: String,
-        difficultyRating: Int,
-        status: Status
+        summary: String = "",
+        difficultyRating: Int? = nil,
+        status: Status = .new
     ) {
         self.question = question
         self.optionA = optionA
@@ -49,7 +49,7 @@ class QuestionAnswerCombo: Codable {
 
 
 enum Status: Int, Codable, Identifiable, CaseIterable {
-    case none, unanswered, answered
+    case new, unanswered, answered
     
     var id: Self {
         self
@@ -57,8 +57,8 @@ enum Status: Int, Codable, Identifiable, CaseIterable {
     
     var descr: String {
         switch self {
-        case .none:
-            return "None"
+        case .new:
+            return "New"
         case .unanswered:
             return "Unanswered"
         case .answered:
