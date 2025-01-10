@@ -24,6 +24,7 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
             }
+            .preferredColorScheme(.dark)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
