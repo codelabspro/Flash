@@ -17,7 +17,7 @@ struct FlashCardsListView: View {
                 Text("Hello, world!")
             }
             .padding()
-            .navigationTitle("My Flash Crds")
+            .navigationTitle("My Flash Cards")
             .toolbar {
                 Button {
                     
