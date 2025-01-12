@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DCDA3B202D3383C7002751F3 /* SwiftUIRouter in Frameworks */ = {isa = PBXBuildFile; productRef = DCDA3B1F2D3383C7002751F3 /* SwiftUIRouter */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		DCDA3AD52D3120F6002751F3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCDA3B202D3383C7002751F3 /* SwiftUIRouter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = Flash;
 			packageProductDependencies = (
+				DCDA3B1F2D3383C7002751F3 /* SwiftUIRouter */,
 			);
 			productName = Flash;
 			productReference = DCDA3AC42D3120F4002751F3 /* Flash.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = DCDA3ABB2D3120F4002751F3;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DCDA3B1E2D338341002751F3 /* XCRemoteSwiftPackageReference "SwiftUIRouter" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DCDA3AC52D3120F4002751F3 /* Products */;
 			projectDirPath = "";
@@ -558,6 +567,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DCDA3B1E2D338341002751F3 /* XCRemoteSwiftPackageReference "SwiftUIRouter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/frzi/SwiftUIRouter.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DCDA3B1F2D3383C7002751F3 /* SwiftUIRouter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DCDA3B1E2D338341002751F3 /* XCRemoteSwiftPackageReference "SwiftUIRouter" */;
+			productName = SwiftUIRouter;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DCDA3ABC2D3120F4002751F3 /* Project object */;
 }

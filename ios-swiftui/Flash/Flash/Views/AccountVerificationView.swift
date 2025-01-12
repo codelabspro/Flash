@@ -1,4 +1,11 @@
 //
+//  AccountVerificationView.swift
+//  Flash
+//
+//  Created by Coder on 1/11/25.
+//
+
+//
 //  ContentView.swift
 //  Flash
 //
@@ -7,14 +14,14 @@
 
 import SwiftUI
 
-struct FlashCardsListView: View {
+struct AccountVerificationView: View {
     var body: some View {
         NavigationStack {
             VStack {
                 Image(systemName: "globe")
                     .imageScale(.large)
                     .foregroundStyle(.tint)
-                Text("Hello, world!")
+                Text("Account Verification")
             }
             .padding()
             .navigationTitle("My Flash Cards")
@@ -31,5 +38,5 @@ struct FlashCardsListView: View {
 }
 
 #Preview {
-    FlashCardsListView()
+    AccountVerificationView()
 }

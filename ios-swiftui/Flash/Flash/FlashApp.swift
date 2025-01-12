@@ -8,12 +8,14 @@
 import SwiftUI
 import SwiftData
 
+
 @main
 struct FlashApp: App {
     var body: some Scene {
         WindowGroup {
-            FlashCardsListView()
-            .preferredColorScheme(ColorScheme.dark)
+                LandingContentView()
+                .preferredColorScheme(ColorScheme.dark)
+
         }
         .modelContainer(for: QuestionAnswerCombo.self)
         
