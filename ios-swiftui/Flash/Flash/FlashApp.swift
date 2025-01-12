@@ -13,8 +13,10 @@ struct FlashApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            .preferredColorScheme(ColorScheme.dark)
         }
         .modelContainer(for: QuestionAnswerCombo.self)
+        
     }
     
     init() {
