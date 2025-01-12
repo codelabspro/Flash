@@ -25,8 +25,8 @@ struct NewQuestionAnswerComboView: View {
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Book Title", text: $question)
-                TextField("Author", text: $summary)
+                TextField("Question", text: $question)
+                TextField("Summary", text: $summary)
                 Button("Create") {
                     let newQuestionAnswerCombo = QuestionAnswerCombo(
                         question: question,
@@ -40,7 +40,7 @@ struct NewQuestionAnswerComboView: View {
                         summary: summary
                     )
                     modelContext.insert(newQuestionAnswerCombo)
-                    
+                    dismiss()
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .buttonStyle(.borderedProminent)

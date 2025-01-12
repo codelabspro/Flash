@@ -9,14 +9,20 @@ import SwiftUI
 
 struct LandingContentView: View {
     @State private var navigateToFlashTabs = false
+    @State var email: String = ""
+    @State var password: String = ""
     var body: some View {
         NavigationStack {
             VStack {
                 Image(systemName: "globe")
                     .imageScale(.large)
                     .foregroundStyle(.tint)
+                Text("")
                 Text("Welcome to Flash Cards App")
-                
+                Form {
+                    TextField("Email", text: $email)
+                    TextField("Password", text: $password)
+                }
                 Button {
                     navigateToFlashTabs = true
                 } label: {
@@ -32,6 +38,7 @@ struct LandingContentView: View {
             }
             .padding()
             .navigationTitle("My Flash Cards")
+            /* TODO-FIXME-CLEANUP
             .toolbar {
                 Button {
                     
@@ -40,6 +47,7 @@ struct LandingContentView: View {
                         .imageScale(.large)
                 }
             }
+            */
             .navigationDestination(isPresented: $navigateToFlashTabs) {
                 FlashTabsView()
                     .navigationBarBackButtonHidden(true)

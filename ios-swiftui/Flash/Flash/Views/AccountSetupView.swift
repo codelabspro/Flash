@@ -9,11 +9,11 @@ import SwiftUI
 
 struct AccountSetupView: View {
     @State private var showingNewQuestionView = false
-    
+
     var body: some View {
         NavigationView {
             List {
-                Text("Account Setup")
+                Text("Flash Cards")
             }
             .padding()
             .navigationTitle("Setup")
@@ -39,6 +39,7 @@ struct AccountSetupView: View {
                         summary: "",
                         status: .new
                     )
+                    .presentationDetents([.large, .medium])
                 }
             }
         }
