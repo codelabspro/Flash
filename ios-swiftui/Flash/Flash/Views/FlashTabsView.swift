@@ -20,6 +20,11 @@ struct FlashTabsView: View {
                 .tabItem {
                     Label("Verify", systemImage: "checkmark.circle")
                 }
+            
+            AccountProfileView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.fill")
+                }
         }
         .navigationBarTitle("Flash Cards", displayMode: .large)
     }

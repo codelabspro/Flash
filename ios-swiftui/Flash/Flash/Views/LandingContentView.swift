@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LandingContentView: View {
+    @State private var navigateToFlashTabs = false
     var body: some View {
         NavigationStack {
             VStack {
@@ -16,7 +17,9 @@ struct LandingContentView: View {
                     .foregroundStyle(.tint)
                 Text("Hello, world!")
                 
-                NavigationLink(destination: FlashTabsView()) {
+                Button {
+                    navigateToFlashTabs = true
+                } label: {
                     Text("Get Started")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -36,6 +39,10 @@ struct LandingContentView: View {
                     Image(systemName: "plus.circle.fill")
                         .imageScale(.large)
                 }
+            }
+            .navigationDestination(isPresented: $navigateToFlashTabs) {
+                FlashTabsView()
+                    .navigationBarBackButtonHidden(true)
             }
         }
     }
