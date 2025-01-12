@@ -12,7 +12,7 @@ import SwiftData
 struct FlashApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            FlashCardsListView()
             .preferredColorScheme(ColorScheme.dark)
         }
         .modelContainer(for: QuestionAnswerCombo.self)

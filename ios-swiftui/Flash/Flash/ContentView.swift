@@ -7,18 +7,29 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct FlashCardsListView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack {
+                Image(systemName: "globe")
+                    .imageScale(.large)
+                    .foregroundStyle(.tint)
+                Text("Hello, world!")
+            }
+            .padding()
+            .navigationTitle("My Flash Crds")
+            .toolbar {
+                Button {
+                    
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .imageScale(.large)
+                }
+            }
         }
-        .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    FlashCardsListView()
 }
