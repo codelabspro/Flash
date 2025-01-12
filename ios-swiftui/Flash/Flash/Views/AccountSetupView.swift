@@ -8,9 +8,70 @@
 import SwiftUI
 import SwiftData
 
+struct QuestionCard: View {
+    let question: QuestionAnswerCombo
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(question.question)
+                .font(.headline)
+                .foregroundColor(.white)
+            
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Options:")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                
+                HStack(spacing: 16) {
+                    VStack(alignment: .leading) {
+                        OptionView(label: "A", text: question.optionA)
+                        OptionView(label: "B", text: question.optionB)
+                    }
+                    VStack(alignment: .leading) {
+                        OptionView(label: "C", text: question.optionC)
+                        OptionView(label: "D", text: question.optionD)
+                    }
+                }
+            }
+            
+            HStack {
+                Label("Correct: \(question.correctOption)", systemImage: "checkmark.circle.fill")
+                    .foregroundColor(.green)
+                Spacer()
+                Text(question.summary)
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 15)
+                .fill(Color(red: 0.15, green: 0.15, blue: 0.25))
+                .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
+        )
+    }
+}
+
+struct OptionView: View {
+    let label: String
+    let text: String
+    
+    var body: some View {
+        HStack(spacing: 8) {
+            Text(label + ":")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+            Text(text)
+                .font(.subheadline)
+                .foregroundColor(.white)
+        }
+    }
+}
+
 struct AccountSetupView: View {
     @State private var showingNewQuestionView = false
     @Query(sort: \QuestionAnswerCombo.question) private var questions: [QuestionAnswerCombo]
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -24,19 +85,21 @@ struct AccountSetupView: View {
                 )
                 .ignoresSafeArea()
                 
-                List {
-                    ForEach(questions) { question in
-                        NavigationLink {
-                            Text(question.summary)
-                        } label: {
-                            Text(question.question)
+                ScrollView {
+                    LazyVStack(spacing: 16) {
+                        ForEach(questions) { question in
+                            NavigationLink {
+                                Text(question.summary)
+                            } label: {
+                                QuestionCard(question: question)
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
-                    .listRowBackground(Color.clear)
+                    .padding()
                 }
                 .listStyle(.plain)
                 .scrollContentBackground(.hidden)
-                .padding()
                 .navigationTitle("Flash")
                 .navigationBarItems(trailing:
                     Button(action: {

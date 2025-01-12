@@ -12,12 +12,12 @@ struct FlashTabsView: View {
         TabView {
             AccountSetupView()
                 .tabItem {
-                    Label("Setup", systemImage: "person.crop.circle")
+                    Label("Questions", systemImage: "person.crop.circle")
                 }
             
             AccountVerificationView()
                 .tabItem {
-                    Label("Verify", systemImage: "checkmark.circle")
+                    Label("Test", systemImage: "checkmark.circle")
                 }
             
             AccountProfileView()
