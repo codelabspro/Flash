@@ -16,7 +16,7 @@ struct LandingContentView: View {
                     .foregroundStyle(.tint)
                 Text("Hello, world!")
                 
-                NavigationLink(destination: FlashCardsView()) {
+                NavigationLink(destination: FlashTabsView()) {
                     Text("Get Started")
                         .font(.headline)
                         .foregroundColor(.white)
