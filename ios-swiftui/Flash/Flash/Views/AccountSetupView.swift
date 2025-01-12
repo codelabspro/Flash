@@ -4,25 +4,41 @@
 //
 //  Created by Coder on 1/11/25.
 //
+
 import SwiftUI
 
 struct AccountSetupView: View {
+    @State private var showingNewQuestionView = false
+    
     var body: some View {
-        NavigationStack {
-            VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundStyle(.tint)
+        NavigationView {
+            List {
                 Text("Account Setup")
             }
             .padding()
-            .navigationTitle("My Flash Cards")
-            .toolbar {
-                Button {
-                    
-                } label: {
-                    Image(systemName: "plus.circle.fill")
-                        .imageScale(.large)
+            .navigationTitle("Setup")
+            .navigationBarItems(trailing: 
+                Button(action: {
+                    showingNewQuestionView.toggle()
+                }) {
+                    Image(systemName: "plus")
+                        .font(.system(size: 20))
+                }
+            )
+            .sheet(isPresented: $showingNewQuestionView) {
+                NavigationStack {
+                    NewQuestionAnswerComboView(
+                        question: "",
+                        optionA: "",
+                        optionB: "",
+                        optionC: "",
+                        optionD: "",
+                        correctOption: "",
+                        dateAdded: Date(),
+                        dateAnswered: Date(),
+                        summary: "",
+                        status: .new
+                    )
                 }
             }
         }

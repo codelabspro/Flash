@@ -15,7 +15,7 @@ struct LandingContentView: View {
                 Image(systemName: "globe")
                     .imageScale(.large)
                     .foregroundStyle(.tint)
-                Text("Hello, world!")
+                Text("Welcome to Flash Cards App")
                 
                 Button {
                     navigateToFlashTabs = true

@@ -1,10 +1,9 @@
 //
-//  FlashCardsView.swift
+//  FlashTabsView.swift
 //  Flash
 //
 //  Created by Coder on 1/12/25.
 //
-
 
 import SwiftUI
 
@@ -26,7 +25,6 @@ struct FlashTabsView: View {
                     Label("Profile", systemImage: "person.fill")
                 }
         }
-        .navigationBarTitle("Flash Cards", displayMode: .large)
     }
 }
 
