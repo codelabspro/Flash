@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct FlashApp: App {
@@ -13,5 +14,10 @@ struct FlashApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: QuestionAnswerCombo.self)
+    }
+    
+    init() {
+        print(URL.applicationSupportDirectory.path(percentEncoded: false))
     }
 }
