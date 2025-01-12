@@ -25,13 +25,20 @@ struct AccountSetupView: View {
                 .ignoresSafeArea()
                 
                 List {
-                    Text("Flash Cards")
-                        .listRowBackground(Color.clear)
+                    ForEach(questions) { question in
+                        NavigationLink {
+                            Text(question.summary)
+                        } label: {
+                            Text(question.question)
+                        }
+                    }
+                    .listRowBackground(Color.clear)
                 }
+                .listStyle(.plain)
                 .scrollContentBackground(.hidden)
                 .padding()
-                .navigationTitle("Setup")
-                .navigationBarItems(trailing: 
+                .navigationTitle("Flash")
+                .navigationBarItems(trailing:
                     Button(action: {
                         showingNewQuestionView.toggle()
                     }) {
@@ -63,4 +70,5 @@ struct AccountSetupView: View {
 
 #Preview {
     AccountSetupView()
+        .modelContainer(for: QuestionAnswerCombo.self, inMemory: true)
 }
