@@ -8,36 +8,53 @@ import SwiftUI
 
 struct AccountProfileView: View {
     @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         NavigationView {
-            VStack {
-                Text("Profile")
-                Spacer()
+            ZStack {
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color(red: 0.2, green: 0.2, blue: 0.3),
+                        Color(red: 0.1, green: 0.1, blue: 0.2)
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea()
                 
-                Button(action: {
-                    dismiss()
-                }) {
-                    Text("Logout")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(height: 55)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.red)
-                        .cornerRadius(10)
-                        .padding()
+                VStack {
+                    Text("Profile")
+                    Spacer()
+                    
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Text("Logout")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(height: 55)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.red)
+                            .cornerRadius(10)
+                            .padding()
+                    }
                 }
-            }
-
-        }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    // Action for the button
-                } label: {
-                    Image(systemName: "gear")
-                        .imageScale(.large)
+                .navigationTitle("Profile")
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            // Action for the button
+                        } label: {
+                            Image(systemName: "gear")
+                                .imageScale(.large)
+                        }
+                    }
                 }
             }
         }
     }
+}
+
+#Preview {
+    AccountProfileView()
 }

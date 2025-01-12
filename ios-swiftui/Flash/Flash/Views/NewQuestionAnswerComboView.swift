@@ -47,6 +47,12 @@ struct NewQuestionAnswerComboView: View {
                 .padding(.vertical)
                 .disabled(question.isEmpty || summary.isEmpty)
                 .navigationTitle("New Flash Card")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem {
+                        Button("Cancel") { dismiss() }
+                    }
+                }
             }
         }
     }
