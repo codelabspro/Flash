@@ -20,7 +20,7 @@ struct FlashTabsView: View {
                     Label("Test", systemImage: "checkmark.circle")
                 }
             
-            AccountProfileView()
+            TabThreeView()
                 .tabItem {
                     Label("Profile", systemImage: "person.fill")
                 }

@@ -1,12 +1,12 @@
 //
-//  AccountProfileView.swift
+//  TabThreeView.swift
 //  Flash
 //
 //  Created by Coder on 1/12/25.
 //
 import SwiftUI
 
-struct AccountProfileView: View {
+struct TabThreeView: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -56,5 +56,5 @@ struct AccountProfileView: View {
 }
 
 #Preview {
-    AccountProfileView()
+    TabThreeView()
 }
