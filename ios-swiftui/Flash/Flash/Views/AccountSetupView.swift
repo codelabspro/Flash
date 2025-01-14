@@ -8,14 +8,84 @@
 import SwiftUI
 import SwiftData
 
+struct AccountSetupView: View {
+    @State private var showingNewQuestionView = false
+    @Query(sort: \QuestionAnswerCombo.question) private var questions: [QuestionAnswerCombo]
+    
+    var body: some View {
+        NavigationView {
+            ZStack {
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color(red: 0.2, green: 0.2, blue: 0.3),
+                        Color(red: 0.1, green: 0.1, blue: 0.2)
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea()
+                
+                ScrollView {
+                    LazyVStack(spacing: 16) {
+                        ForEach(questions) { question in
+                            NavigationLink {
+                                Text(question.summary)
+                            } label: {
+                                
+                                QuestionCard(question: question)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
+                    .padding()
+                }
+                .listStyle(.plain)
+                .scrollContentBackground(.hidden)
+                .navigationTitle("Flash")
+                .navigationBarItems(trailing:
+                    Button(action: {
+                        showingNewQuestionView.toggle()
+                    }) {
+                        Image(systemName: "plus")
+                            .font(.system(size: 20))
+                    }
+                )
+                .sheet(isPresented: $showingNewQuestionView) {
+                    NavigationStack {
+                        NewQuestionAnswerComboView(
+                            question: "",
+                            optionA: "",
+                            optionB: "",
+                            optionC: "",
+                            optionD: "",
+                            correctOption: "",
+                            dateAdded: Date(),
+                            dateAnswered: Date(),
+                            summary: "",
+                            status: .new
+                        )
+                        .presentationDetents([.large, .medium])
+                    }
+                }
+            }
+        }
+    }
+}
+
 struct QuestionCard: View {
     let question: QuestionAnswerCombo
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(question.question)
-                .font(.headline)
-                .foregroundColor(.white)
+            HStack(spacing: 10) {
+                question.icon
+                VStack(alignment: .leading) {
+                    Text(question.question)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                }
+            }
+
             
             VStack(alignment: .leading, spacing: 8) {
                 Text("Options:")
@@ -68,68 +138,7 @@ struct OptionView: View {
     }
 }
 
-struct AccountSetupView: View {
-    @State private var showingNewQuestionView = false
-    @Query(sort: \QuestionAnswerCombo.question) private var questions: [QuestionAnswerCombo]
-    
-    var body: some View {
-        NavigationView {
-            ZStack {
-                LinearGradient(
-                    gradient: Gradient(colors: [
-                        Color(red: 0.2, green: 0.2, blue: 0.3),
-                        Color(red: 0.1, green: 0.1, blue: 0.2)
-                    ]),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .ignoresSafeArea()
-                
-                ScrollView {
-                    LazyVStack(spacing: 16) {
-                        ForEach(questions) { question in
-                            NavigationLink {
-                                Text(question.summary)
-                            } label: {
-                                QuestionCard(question: question)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                    }
-                    .padding()
-                }
-                .listStyle(.plain)
-                .scrollContentBackground(.hidden)
-                .navigationTitle("Flash")
-                .navigationBarItems(trailing:
-                    Button(action: {
-                        showingNewQuestionView.toggle()
-                    }) {
-                        Image(systemName: "plus")
-                            .font(.system(size: 20))
-                    }
-                )
-                .sheet(isPresented: $showingNewQuestionView) {
-                    NavigationStack {
-                        NewQuestionAnswerComboView(
-                            question: "",
-                            optionA: "",
-                            optionB: "",
-                            optionC: "",
-                            optionD: "",
-                            correctOption: "",
-                            dateAdded: Date(),
-                            dateAnswered: Date(),
-                            summary: "",
-                            status: .new
-                        )
-                        .presentationDetents([.large, .medium])
-                    }
-                }
-            }
-        }
-    }
-}
+
 
 #Preview {
     AccountSetupView()
