@@ -26,7 +26,7 @@ struct NewQuestionAnswerComboView: View {
         NavigationStack {
             Form {
                 TextField("Question", text: $question)
-                TextField("Summary", text: $answerString)
+                TextField("Correct Answer", text: $answerString)
                 // In your Form:
                 Section("Question Options") {
                     TextField("Option A", text: $optionA)
@@ -75,7 +75,7 @@ struct NewQuestionAnswerComboView: View {
                 .buttonStyle(.borderedProminent)
                 .padding(.vertical)
                 .disabled(question.isEmpty || answerString.isEmpty)
-                .navigationTitle("New Flash Card")
+                .navigationTitle("New Question")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem {

@@ -17,7 +17,7 @@ struct FlashTabsView: View {
             
             TabTwoView()
                 .tabItem {
-                    Label("Test", systemImage: "checkmark.circle")
+                    Label("Pop Quizzes", systemImage: "checkmark.circle")
                 }
             
             TabThreeView()

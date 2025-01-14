@@ -9,7 +9,10 @@ import SwiftUI
 import SwiftData
 
 struct TabOneView: View {
-    @State private var showingNewQuestionView = false
+    // TODO-FIXME-CLEANUP @State private var showingNewQuestionView = false
+    @State private var showingOverlayMenu = false
+    @State private var showingNewQuestionSheet = false
+    @State private var showingNewPopQuizSheet = false
     @Query(sort: \QuestionAnswerCombo.question) private var questions: [QuestionAnswerCombo]
     
     var body: some View {
@@ -33,16 +36,6 @@ struct TabOneView: View {
                                 QuestionCard(question: question)
                             }
                             .buttonStyle(PlainButtonStyle())
-                            
-                            /* TODO-FIXME
-                            NavigationLink {
-                                Text(question.summary)
-                            } label: {
-                                
-                                QuestionCard(question: question)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            */
                         }
                     }
                     .padding()
@@ -52,13 +45,28 @@ struct TabOneView: View {
                 .navigationTitle("Flash")
                 .navigationBarItems(trailing:
                     Button(action: {
-                        showingNewQuestionView.toggle()
+                        // TODO-FIXME-CLEANUP showingNewQuestionView.toggle()
+                        showingOverlayMenu = true
                     }) {
                         Image(systemName: "plus")
                             .font(.system(size: 20))
                     }
                 )
-                .sheet(isPresented: $showingNewQuestionView) {
+                
+                .overlay {
+                    if showingOverlayMenu {
+                        OverlayMenuView(
+                            isPresented: $showingOverlayMenu,
+                            showNewQuestion: $showingNewQuestionSheet,
+                            showNewPopQuiz: $showingNewPopQuizSheet
+                        )
+                        .transition(.opacity)
+                    }
+                }
+                .sheet(isPresented: $showingNewPopQuizSheet) {
+                    NewPopQuizView()
+                }
+                .sheet(isPresented: $showingNewQuestionSheet) {
                     NavigationStack {
                         NewQuestionAnswerComboView(
                             question: "",

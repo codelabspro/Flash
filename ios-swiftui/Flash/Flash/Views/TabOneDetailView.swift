@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct TabOneDetailView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query private var quizzes: [PopQuiz]
     let question: QuestionAnswerCombo
-    
+    @State private var showingQuizSelector = false
+    @State private var showingSuccessAlert = false
+    @State private var selectedQuizTitle = ""
     var body: some View {
         ZStack {
             // Matching gradient background
@@ -50,7 +55,7 @@ struct TabOneDetailView: View {
                         // Additional details
                         VStack(alignment: .leading, spacing: 12) {
                             if !question.answerString.isEmpty {
-                                DetailRow(title: "Summary", content: question.answerString)
+                                DetailRow(title: "Correct Answer", content: question.answerString)
                             }
                             
                             if let rating = question.difficultyRating {
@@ -76,6 +81,100 @@ struct TabOneDetailView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showingQuizSelector = true
+                } label: {
+                    Label("Add to Quiz", systemImage: "plus.circle")
+                }
+            }
+        }
+        .sheet(isPresented: $showingQuizSelector) {
+            QuizSelectorView(
+                question: question,
+                showingSuccessAlert: $showingSuccessAlert,
+                selectedQuizTitle: $selectedQuizTitle
+            )
+        }
+        .alert("Added to Quiz", isPresented: $showingSuccessAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Question added to \(selectedQuizTitle)")
+        }
+    }
+}
+
+struct QuizSelectorView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
+    @Query private var quizzes: [PopQuiz]
+    
+    let question: QuestionAnswerCombo
+    @Binding var showingSuccessAlert: Bool
+    @Binding var selectedQuizTitle: String
+    
+    var body: some View {
+        NavigationStack {
+            List {
+                if quizzes.isEmpty {
+                    ContentUnavailableView(
+                        "No Quizzes Available",
+                        systemImage: "list.clipboard",
+                        description: Text("Create a quiz first to add questions to it")
+                    )
+                } else {
+                    ForEach(quizzes) { quiz in
+                        QuizRowView(quiz: quiz) {
+                            addToQuiz(quiz)
+                        }
+                    }
+                }
+            }
+            .navigationTitle("Select Quiz")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+            }
+        }
+    }
+    
+    private func addToQuiz(_ quiz: PopQuiz) {
+        if !quiz.questions.contains(where: { $0.id == question.id }) {
+            quiz.questions.append(question)
+            selectedQuizTitle = quiz.title
+            dismiss()
+            showingSuccessAlert = true
+        }
+    }
+}
+
+private struct QuizRowView: View {
+    let quiz: PopQuiz
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(quiz.title)
+                        .font(.headline)
+                    
+                    Text("\(quiz.questionCount) questions")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .foregroundStyle(.secondary)
+            }
+        }
     }
 }
 
