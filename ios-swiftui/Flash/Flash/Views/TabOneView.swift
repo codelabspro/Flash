@@ -83,6 +83,15 @@ struct QuestionCard: View {
                     Text(question.question)
                         .font(.headline)
                         .foregroundColor(.white)
+                    
+                    if let difficultyRating = question.difficultyRating {
+                        HStack {
+                            ForEach(0..<difficultyRating) { _ in
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(.yellow)
+                            }
+                        }
+                    }
                 }
             }
 

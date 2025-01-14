@@ -19,7 +19,7 @@ struct NewQuestionAnswerComboView: View {
     @State var dateAdded: Date
     @State var dateAnswered: Date
     @State var summary: String
-    @State var difficultyRating: Int?
+    @State var difficultyRating: Int = 3
     @State var status: Status
     
     var body: some View {
@@ -27,6 +27,12 @@ struct NewQuestionAnswerComboView: View {
             Form {
                 TextField("Question", text: $question)
                 TextField("Summary", text: $summary)
+                Picker("Difficulty", selection: $difficultyRating) {
+                    ForEach(1...5, id: \.self) { rating in
+                        Text("\(rating)").tag(rating)
+                    }
+                }
+                .pickerStyle(.wheel)
                 Button("Create") {
                     let newQuestionAnswerCombo = QuestionAnswerCombo(
                         question: question,
@@ -37,7 +43,8 @@ struct NewQuestionAnswerComboView: View {
                         correctOption: correctOption,
                         dateAdded: dateAdded,
                         dateAnswered: dateAnswered,
-                        summary: summary
+                        summary: summary,
+                        difficultyRating: difficultyRating
                     )
                     modelContext.insert(newQuestionAnswerCombo)
                     dismiss()
