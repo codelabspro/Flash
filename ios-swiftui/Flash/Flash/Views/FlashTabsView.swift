@@ -12,7 +12,7 @@ struct FlashTabsView: View {
         TabView {
             TabOneView()
                 .tabItem {
-                    Label("Questions", systemImage: "person.crop.circle")
+                    Label("Test Creator", systemImage: "person.crop.circle")
                 }
             
             TabTwoView()
