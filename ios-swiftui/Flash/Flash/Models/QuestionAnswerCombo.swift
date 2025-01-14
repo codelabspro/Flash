@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import SwiftData
 
 @Model
@@ -46,6 +47,17 @@ class QuestionAnswerCombo {
         self.summary = summary
         self.difficultyRating = difficultyRating
         self.status = status
+    }
+    
+    var icon: Image {
+        switch status {
+        case .new:
+            Image(systemName: "checkmark.diamon.fill")
+        case .unanswered:
+            Image(systemName: "book.fill")
+        case .answered:
+            Image(systemName: "books.vertical.fill")
+         }
     }
 }
 
