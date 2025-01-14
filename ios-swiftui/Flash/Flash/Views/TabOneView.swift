@@ -1,5 +1,5 @@
 //
-//  AccountSetupView.swift
+//  TabOneView.swift
 //  Flash
 //
 //  Created by Coder on 1/11/25.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct AccountSetupView: View {
+struct TabOneView: View {
     @State private var showingNewQuestionView = false
     @Query(sort: \QuestionAnswerCombo.question) private var questions: [QuestionAnswerCombo]
     
@@ -141,6 +141,6 @@ struct OptionView: View {
 
 
 #Preview {
-    AccountSetupView()
+    TabOneView()
         .modelContainer(for: QuestionAnswerCombo.self, inMemory: true)
 }

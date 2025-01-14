@@ -1,5 +1,5 @@
 //
-//  AccountVerificationView.swift
+//  TabTwoView.swift
 //  Flash
 //
 //  Created by Coder on 1/11/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AccountVerificationView: View {
+struct TabTwoView: View {
     var body: some View {
         NavigationStack {
             ZStack {
@@ -28,7 +28,7 @@ struct AccountVerificationView: View {
                     Text("Account Verification")
                 }
                 .padding()
-                .navigationTitle("My Flash Cards")
+                .navigationTitle("Flash")
                 .toolbar {
                     Button {
                         
@@ -43,5 +43,5 @@ struct AccountVerificationView: View {
 }
 
 #Preview {
-    AccountVerificationView()
+    TabTwoView()
 }

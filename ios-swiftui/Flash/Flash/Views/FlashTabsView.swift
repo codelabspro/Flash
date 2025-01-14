@@ -10,12 +10,12 @@ import SwiftUI
 struct FlashTabsView: View {
     var body: some View {
         TabView {
-            AccountSetupView()
+            TabOneView()
                 .tabItem {
                     Label("Questions", systemImage: "person.crop.circle")
                 }
             
-            AccountVerificationView()
+            TabTwoView()
                 .tabItem {
                     Label("Test", systemImage: "checkmark.circle")
                 }

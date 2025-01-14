@@ -37,7 +37,7 @@ struct LandingContentView: View {
                 }
             }
             .padding()
-            .navigationTitle("My Flash Cards")
+            .navigationTitle("Flash")
             /* TODO-FIXME-CLEANUP
             .toolbar {
                 Button {
