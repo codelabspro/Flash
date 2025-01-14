@@ -15,7 +15,7 @@ struct NewQuestionAnswerComboView: View {
     @State var optionB: String
     @State var optionC: String
     @State var optionD: String
-    @State var correctOption: String
+    @State var correctOption: Int? = 0
     @State var dateAdded: Date
     @State var dateAnswered: Date
     @State var answerString: String
@@ -27,6 +27,28 @@ struct NewQuestionAnswerComboView: View {
             Form {
                 TextField("Question", text: $question)
                 TextField("Summary", text: $answerString)
+                // In your Form:
+                Section("Question Options") {
+                    TextField("Option A", text: $optionA)
+                        .textFieldStyle(.roundedBorder)
+                    
+                    TextField("Option B", text: $optionB)
+                        .textFieldStyle(.roundedBorder)
+                    
+                    TextField("Option C", text: $optionC)
+                        .textFieldStyle(.roundedBorder)
+                    
+                    TextField("Option D", text: $optionD)
+                        .textFieldStyle(.roundedBorder)
+                    
+                    Picker("Correct Answer", selection: $correctOption) {
+                        Text("A").tag(0)
+                        Text("B").tag(1)
+                        Text("C").tag(2)
+                        Text("D").tag(3)
+                    }
+                    .pickerStyle(.segmented)
+                }
                 Picker("Difficulty", selection: $difficultyRating) {
                     ForEach(1...5, id: \.self) { rating in
                         Text("\(rating)").tag(rating)
@@ -40,7 +62,7 @@ struct NewQuestionAnswerComboView: View {
                         optionB: optionB,
                         optionC: optionC,
                         optionD: optionD,
-                        correctOption: correctOption,
+                        correctOption: correctOption ?? 0,
                         dateAdded: dateAdded,
                         dateAnswered: dateAnswered,
                         answerString: answerString,
@@ -73,7 +95,7 @@ struct NewQuestionAnswerComboView: View {
         optionB: "Madrid",
         optionC: "Paris",
         optionD: "Rome",
-        correctOption: "Paris",
+        correctOption: 0,
         dateAdded: Date(),
         dateAnswered: Date(),
         answerString: "Geography Question",

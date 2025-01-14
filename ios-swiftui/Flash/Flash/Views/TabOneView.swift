@@ -66,13 +66,13 @@ struct TabOneView: View {
                             optionB: "",
                             optionC: "",
                             optionD: "",
-                            correctOption: "",
+                            correctOption: 0,
                             dateAdded: Date(),
                             dateAnswered: Date(),
                             answerString: "",
                             status: .new
                         )
-                        .presentationDetents([.large, .medium])
+                        .presentationDetents([.large])
                     }
                 }
             }

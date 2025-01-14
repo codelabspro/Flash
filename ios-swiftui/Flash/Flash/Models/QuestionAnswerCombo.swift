@@ -18,7 +18,7 @@ class QuestionAnswerCombo {
     var optionB: String
     var optionC: String
     var optionD: String
-    var correctOption: String
+    var correctOption: Int
     var dateAdded: Date
     var dateAnswered: Date
     var answerString: String
@@ -31,7 +31,7 @@ class QuestionAnswerCombo {
         optionB: String,
         optionC: String,
         optionD: String,
-        correctOption: String,
+        correctOption: Int,
         dateAdded: Date = Date.now,
         dateAnswered: Date = Date.distantPast,
         answerString: String = "",

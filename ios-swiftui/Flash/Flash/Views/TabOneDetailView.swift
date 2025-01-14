@@ -39,10 +39,10 @@ struct TabOneDetailView: View {
                         
                         // Options section
                         VStack(alignment: .leading, spacing: 12) {
-                            OptionRow(label: "A", text: question.optionA, isCorrect: question.correctOption == "A")
-                            OptionRow(label: "B", text: question.optionB, isCorrect: question.correctOption == "B")
-                            OptionRow(label: "C", text: question.optionC, isCorrect: question.correctOption == "C")
-                            OptionRow(label: "D", text: question.optionD, isCorrect: question.correctOption == "D")
+                            OptionRow(label: "A", text: question.optionA, isCorrect: question.correctOption == 0)
+                            OptionRow(label: "B", text: question.optionB, isCorrect: question.correctOption == 1)
+                            OptionRow(label: "C", text: question.optionC, isCorrect: question.correctOption == 2)
+                            OptionRow(label: "D", text: question.optionD, isCorrect: question.correctOption == 3)
                         }
                         
                         Divider()
