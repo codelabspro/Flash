@@ -16,9 +16,12 @@ struct TabTwoView: View {
             ZStack {
                 // Background gradient
                 LinearGradient(
-                    colors: [Color.blue.opacity(0.6), Color.purple.opacity(0.6)],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
+                    gradient: Gradient(colors: [
+                        Color(red: 0.2, green: 0.2, blue: 0.3),
+                        Color(red: 0.1, green: 0.1, blue: 0.2)
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
                 )
                 .ignoresSafeArea()
                 
