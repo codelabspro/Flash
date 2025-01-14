@@ -28,6 +28,13 @@ struct TabOneView: View {
                 ScrollView {
                     LazyVStack(spacing: 16) {
                         ForEach(questions) { question in
+                            NavigationLink(destination: TabOneDetailView(question: question)) {
+                                
+                                QuestionCard(question: question)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            
+                            /* TODO-FIXME
                             NavigationLink {
                                 Text(question.summary)
                             } label: {
@@ -35,6 +42,7 @@ struct TabOneView: View {
                                 QuestionCard(question: question)
                             }
                             .buttonStyle(PlainButtonStyle())
+                            */
                         }
                     }
                     .padding()
@@ -61,7 +69,7 @@ struct TabOneView: View {
                             correctOption: "",
                             dateAdded: Date(),
                             dateAnswered: Date(),
-                            summary: "",
+                            answerString: "",
                             status: .new
                         )
                         .presentationDetents([.large, .medium])
@@ -117,7 +125,7 @@ struct QuestionCard: View {
                 Label("Correct: \(question.correctOption)", systemImage: "checkmark.circle.fill")
                     .foregroundColor(.green)
                 Spacer()
-                Text(question.summary)
+                Text(question.answerString)
                     .font(.caption)
                     .foregroundColor(.gray)
             }

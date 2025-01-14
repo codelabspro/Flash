@@ -18,7 +18,7 @@ struct NewQuestionAnswerComboView: View {
     @State var correctOption: String
     @State var dateAdded: Date
     @State var dateAnswered: Date
-    @State var summary: String
+    @State var answerString: String
     @State var difficultyRating: Int = 3
     @State var status: Status
     
@@ -26,7 +26,7 @@ struct NewQuestionAnswerComboView: View {
         NavigationStack {
             Form {
                 TextField("Question", text: $question)
-                TextField("Summary", text: $summary)
+                TextField("Summary", text: $answerString)
                 Picker("Difficulty", selection: $difficultyRating) {
                     ForEach(1...5, id: \.self) { rating in
                         Text("\(rating)").tag(rating)
@@ -43,7 +43,7 @@ struct NewQuestionAnswerComboView: View {
                         correctOption: correctOption,
                         dateAdded: dateAdded,
                         dateAnswered: dateAnswered,
-                        summary: summary,
+                        answerString: answerString,
                         difficultyRating: difficultyRating
                     )
                     modelContext.insert(newQuestionAnswerCombo)
@@ -52,7 +52,7 @@ struct NewQuestionAnswerComboView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .buttonStyle(.borderedProminent)
                 .padding(.vertical)
-                .disabled(question.isEmpty || summary.isEmpty)
+                .disabled(question.isEmpty || answerString.isEmpty)
                 .navigationTitle("New Flash Card")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -76,7 +76,7 @@ struct NewQuestionAnswerComboView: View {
         correctOption: "Paris",
         dateAdded: Date(),
         dateAnswered: Date(),
-        summary: "Geography Question",
+        answerString: "Geography Question",
         status: .new
     )
 }

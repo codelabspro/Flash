@@ -9,8 +9,10 @@ import Foundation
 import SwiftUI
 import SwiftData
 
+
 @Model
 class QuestionAnswerCombo {
+
     var question: String
     var optionA: String
     var optionB: String
@@ -19,7 +21,7 @@ class QuestionAnswerCombo {
     var correctOption: String
     var dateAdded: Date
     var dateAnswered: Date
-    var summary: String
+    var answerString: String
     var difficultyRating: Int?
     var status: Status
     
@@ -32,7 +34,7 @@ class QuestionAnswerCombo {
         correctOption: String,
         dateAdded: Date = Date.now,
         dateAnswered: Date = Date.distantPast,
-        summary: String = "",
+        answerString: String = "",
         difficultyRating: Int? = nil,
         status: Status = .new
     ) {
@@ -44,7 +46,7 @@ class QuestionAnswerCombo {
         self.correctOption = correctOption
         self.dateAdded = dateAdded
         self.dateAnswered = dateAnswered
-        self.summary = summary
+        self.answerString = answerString
         self.difficultyRating = difficultyRating
         self.status = status
     }
