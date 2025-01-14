@@ -52,7 +52,7 @@ class QuestionAnswerCombo {
     var icon: Image {
         switch status {
         case .new:
-            Image(systemName: "checkmark.diamon.fill")
+            Image(systemName: "checkmark.diamond.fill")
         case .unanswered:
             Image(systemName: "book.fill")
         case .answered:
