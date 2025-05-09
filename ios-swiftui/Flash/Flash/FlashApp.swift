@@ -30,7 +30,8 @@ struct FlashApp: App {
     
     var body: some Scene {
         WindowGroup {
-                LandingContentView()
+            LandingWelcomeView()
+                // TODO-FIXME-BRINGBACK LandingContentView()
                 .preferredColorScheme(ColorScheme.dark)
 
         }
